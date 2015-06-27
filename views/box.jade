@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  h1(align="center")= title
+  div(align="left")
+      a(href="/addItem") Add item
+
+  p
+    div
+        form(name="sort" method="GET"  action="/find" align="center") Sort list:
+            select(name="sortList" onchange="sortBy()" id="sortList")
+                option(value="createdAt" name="createdAt" id="createdAt") Created Asc
+                option(value="-createdAt" name="createdAt" id="-createdAt") Created Desc
+                option(value="address" name="address" id="address") Address Asc
+                option(value="-address" name="address" id="-address") Address Desc
+                option(value="items" name="items" id="items") Weight Asc
+                option(value="-items" name="items" id="-items") Weight Desc
+        script.
+            document.getElementById("sortList").value = "#{sortBy}"
+    div
+        table(align="center")
+            thead
+                tr: th Id
+                    th Created
+                    th Name
+                    th Address
+                    th Items
+                    th Delete
+            tbody
+              each box, i in data
+                    tr
+                        td(align="center" width="auto") #{box.id}
+                        td(align="center" width="auto") #{box.createdAt}
+                        td(align="center" width="auto") #{box.customerName}
+                        td(align="center" width="auto") #{box.address}
+                        td(align="center" width="auto") #{box.items}
+                        td(align="center" width="auto")
+                            input(type="checkbox" name="checkbox" id="#{box.id}"  onclick="sendDeleteReq(this)")

@@ -1,0 +1,38 @@
+extends itemLayout
+
+block content
+  h1(align="center")= title
+
+  p
+    div(align="left")
+      a(href="/") Home
+  p
+    div
+        form(action='/box',method='post' onsubmit="return validateForm()", name="addItemForm", align='center', id="addItemForm")
+            fieldset(data-role='controlgroup')
+                label(for='id') Id:
+                    p
+                    div(id='idError')
+                    input(id='id',type='number',placeholder='1',name='id', required)
+            fieldset(data-role='controlgroup')
+                label(for='createdAt') Created:
+                    p
+                    div(id='createdAtError')
+                    input(id='createdAt',type='number',placeholder='06192015',name='createdAt', required)
+            fieldset(data-role='controlgroup')
+                label(for='customerName') Name:
+                    p
+                    div(id='customerNameError')
+                    input(id='customerName',type='text',value='',placeholder='Jane Doe',name='customerName', required)
+            fieldset(data-role='controlgroup')
+                label(for='address') Address:
+                    p
+                    div(id='addressError')
+                    input(id='address',type='text',name='address', placeholder="Fifth Avenue 154.")
+            fieldset(data-role='controlgroup')
+                label(for='items') Items:
+                    p
+                    div(id='itemsError')
+                    input(id='items',type='text',name='items', placeholder="mac / book / pro")
+            input(type='submit',value='Place order',data-transition='fade', data-theme='c')
+
